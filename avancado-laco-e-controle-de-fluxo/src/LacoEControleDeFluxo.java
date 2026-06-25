@@ -143,7 +143,7 @@ public class LacoEControleDeFluxo {
                             System.out.println("Essa foi a palavra ou frase que você digitou: > " + PalavraOuFraseDoUsuario + " <\n");
                             break;
                         }
-                    } while (!PalavraOuFraseDoUsuario.matches("[a-zA-Z ]+"));
+                    } while (true);
 
 
                 } else if (EscolhaDoUsuario2.equals("2")) {
