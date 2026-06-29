@@ -4,16 +4,18 @@ public class vetores {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Exercicio 1");
         exercicio1(scanner);
         System.out.println("Exercicio 2");
         exercicio2(scanner);
         System.out.println("\nExercicio 3");
         exercicio3(scanner);
+
         scanner.close();
     }
 
-    public static void exercicio1(Scanner scanner) {
+    public static void exercicio1 (Scanner scanner) {
         int[] VetorDoUsuario = new int[4];
         for (int i = 0; i < VetorDoUsuario.length; i++) {
             System.out.println("Digite um numero para o vetor " + i);
@@ -37,6 +39,7 @@ public class vetores {
         }
 
         scanner.nextLine();
+
         String PalavraDoUsuario;
         int Verificador = 0;
         char Caracter;
@@ -51,17 +54,17 @@ public class vetores {
 
         for (int k = 0; k < PalavraDoUsuario.length(); k++) {
             Caracter = PalavraDoUsuario.charAt(k);
-
             if (Caracter == 'a' || Caracter == 'e' || Caracter == 'i' || Caracter == 'o' || Caracter == 'u' ||
-            Caracter == 'A' || Caracter == 'E' || Caracter == 'I' || Caracter == 'O' || Caracter == 'U') {
+            Caracter == 'A' || Caracter == 'E' || Caracter == 'I' || Caracter == 'O' || Caracter == 'U')
 
+            {
                 Verificador++;
             }
         }
         System.out.println("Sua palavra tem " + Verificador + " vogais\n");
     }
 
-    public static void exercicio2(Scanner scanner) {
+    public static void exercicio2 (Scanner scanner) {
 
         System.out.print("Digite a quantidade de posições para seu vetor\n");
         int QuantidadeDeVetor = scanner.nextInt();
@@ -90,7 +93,7 @@ public class vetores {
         scanner.nextLine();
     }
 
-    public static void exercicio3(Scanner scanner) {
+    public static void exercicio3 (Scanner scanner) {
 
         System.out.print("Digite um nome:\n");
         String nome = scanner.nextLine();
@@ -105,6 +108,7 @@ public class vetores {
             String aux = VetorNome[i];
             VetorNome[i] = VetorNome[nome.length() - 1 - i];
             VetorNome[nome.length() - 1 - i] = aux;
+
         }
 
         System.out.println("O nome que você digitou ao contrario:");
