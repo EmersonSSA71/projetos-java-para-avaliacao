@@ -4,7 +4,6 @@ public class Aluno {
     private String nome;
     private int idade;
     private double[] nota;
-    private double somaMedia;
 
     public Aluno(String nome1, int idade1){
         this.nome = nome1;
@@ -28,10 +27,10 @@ public class Aluno {
        // System.out.println("Média: " + (this.mediaDasNotas / this.nota.length)); COMENTEI PORQUE CRIEI UM METODO PARA MÉDIA
     }
     public void mediaDasNotas() {
-
+        double somaMedia = 0;
         for (int i = 0; i < this.nota.length; i++) {
-            this.somaMedia += this.nota[i];
+            somaMedia += this.nota[i];
         }
-        System.out.println("Média: " + this.somaMedia / this.nota.length);
+        System.out.println("Média: " + somaMedia / this.nota.length);
     }
 }
