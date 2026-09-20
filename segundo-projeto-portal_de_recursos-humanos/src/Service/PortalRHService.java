@@ -4,6 +4,7 @@ import Funcionario.Funcionario;
 import RegistroPonto.RegistroPonto;
 import TipoFuncionario.TipoFuncionario;
 
+import java.text.Normalizer;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -44,12 +45,27 @@ public class PortalRHService {
     }
 
     public Funcionario buscarPorNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            return null;
+        }
+
+        String buscaNormalizada = removerAcentos(nome.trim().toLowerCase());
+
         for (Funcionario f : funcionarios) {
-            if (f.getNome().equalsIgnoreCase(nome)) {
-                return f;
+            if (f.getNome() != null) {
+                String nomeCadastradoNormalizado = removerAcentos(f.getNome().toLowerCase());
+
+                if (nomeCadastradoNormalizado.contains(buscaNormalizada)) {
+                    return f;
+                }
             }
         }
         return null;
+    }
+
+    private String removerAcentos(String texto) {
+        String textoNormalizado = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        return textoNormalizado.replaceAll("\\p{M}", "");
     }
 
     public boolean removerFuncionario(int id) {
