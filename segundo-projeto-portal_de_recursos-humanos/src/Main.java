@@ -1,3 +1,5 @@
+import Exceptions.HorarioInvalidoException;
+import Exceptions.LimiteDeHorasExtrasException;
 import Funcionario.Funcionario;
 import RegistroPonto.RegistroPonto;
 import Service.PortalRHService;
@@ -125,7 +127,7 @@ public class Main {
         }
     }
 
-    private static void menuRegistrarHoras() {
+    private static void menuRegistrarHoras(){
         System.out.println("\n--- REGISTRAR HORAS ---");
         System.out.println("O funcionário que você deseja registrar horas é Gerente ou Estagiário?");
         System.out.println("1. Sim");
@@ -157,7 +159,7 @@ public class Main {
                     return;
             }
 
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("Erro: digite uma opção válida");
             scanner.nextLine();
         }
@@ -199,21 +201,21 @@ public class Main {
 
         int id;
         try {
-                id = scanner.nextInt();
-                scanner.nextLine();
-            } catch (InputMismatchException e){
+            id = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
 
             System.out.println("Digite um ID válido!");
             scanner.nextLine();
             return;
 
-            }
+        }
 
-            Funcionario f = service.buscarPorId(id);
-            if (f == null) {
-                System.out.println("Funcionário não encontrado!");
-                return;
-            }
+        Funcionario f = service.buscarPorId(id);
+        if (f == null) {
+            System.out.println("Funcionário não encontrado!");
+            return;
+        }
 
         if (f.getTipo() != tipo) {
             System.out.println("Aviso: O funcionário '" + f.getNome() + "' pertence ao cargo " + f.getTipo().getDescricao() + " e não " + tipo.getDescricao() + ".");
@@ -237,8 +239,10 @@ public class Main {
             if (sucesso) {
                 System.out.println("Horas registradas com sucesso para '" + f.getNome() + "' !");
             }
-        } catch (DateTimeException e){
-            System.out.println("Erro: Digite a data ou hora corretamente.");
+        } catch (HorarioInvalidoException | LimiteDeHorasExtrasException e) {
+            System.out.println(e.getMessage());
+        } catch (DateTimeException e) {
+            System.out.println("Erro: Digite uma data ou hora válida no formato indicado.");
         }
     }
 
