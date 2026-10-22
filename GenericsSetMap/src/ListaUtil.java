@@ -3,11 +3,11 @@ import java.util.List;
 
 public class ListaUtil {
 
-    public <G extends Produto> void ordenarExibir(List<G> lista){
+    public <G extends Comparable<G>> void ordenarExibir(List<G> lista){
 
         Collections.sort(lista);
 
-        for (Produto produto : lista) {
+        for (G produto : lista) {
             System.out.println(produto);
         }
 
